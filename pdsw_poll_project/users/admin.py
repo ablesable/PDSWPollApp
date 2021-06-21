@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import UserExtended
+from .models import UserExtendedModel
 
-admin.site.register(UserExtended)
+admin.site.register(UserExtendedModel)
