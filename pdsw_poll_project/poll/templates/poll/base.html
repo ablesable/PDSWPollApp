@@ -29,10 +29,20 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="{% url 'create' %}">Create</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="{% url 'register' %}">Register</a></li>
+                        {% if user.is_authenticated %}
+
+                            <li><a href="{% url 'create' %}">Create</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+
+                        {% else %}
+                        
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+
+                        {% endif %}
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>
