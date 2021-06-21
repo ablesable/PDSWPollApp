@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import CreatePollForm
 from .models import Poll
+# from django.contrib.auth.decorators import user_passes_test
+from django.contrib import messages
 
-# Create your views here.
 def home(request):
     polls = Poll.objects.all()
     context = {
@@ -11,22 +12,30 @@ def home(request):
     return render(request, 'poll/home.html', context)
 
 def create(request):
-    if request.method == 'POST':
-        form = CreatePollForm(request.POST)
-        if form.is_valid():
-            # print(form.cleaned_data['question'])
-            form.save()
-            return redirect('home')
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = CreatePollForm(request.POST)
+            if form.is_valid():
+                
+                form.save()
+                return redirect('home')
+        else:
+            form = CreatePollForm()
+        context = {
+            'form' : form
+        }
+        return render(request, 'poll/create.html', context)
     else:
-        form = CreatePollForm()
-    context = {
-        'form' : form
-    }
-    return render(request, 'poll/create.html', context)
+        messages.warning(request, "Unfoturnately - this feature is only for admin!")
+        return redirect('home') 
 
 def results(request, poll_id):
-    context = {}
-    return render(request, 'poll/results.html', context)
+    if request.user.is_superuser:
+        context = {}
+        return render(request, 'poll/results.html', context)
+    else:
+        messages.warning(request, "Unfoturnately - this feature is only for admin!")
+        return redirect('home') 
 
 def vote(request, poll_id):
     poll = Poll.objects.get(pk=poll_id)
