@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from users.forms import UserForm, ExtendedUserForm
 from django.contrib import messages
 
+
 def register(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
