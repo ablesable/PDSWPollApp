@@ -1,7 +1,7 @@
 {% extends "poll/base.html" %}
 
 {% block title %}Results{% endblock %}
-
+{% load mathfilters %}
 {% block main %}
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
@@ -15,13 +15,35 @@
             </div>
 
             <ul class="list-group">
-                <li class="list-group-item">{{ poll.first_option }} &mdash; <strong>{{ poll.first_option_count }}</strong></li>
-                <li class="list-group-item">{{ poll.second_option }} &mdash; <strong>{{ poll.second_option_count }}</strong></li>
-                <li class="list-group-item">{{ poll.third_option }} &mdash; <strong>{{ poll.third_option_count }}</strong></li>
+                <li class="list-group-item">{{ poll.first_option }} &mdash; <strong>{{ poll.first_option_result }}</strong></li>
+                <li class="list-group-item">{{ poll.second_option }} &mdash; <strong>{{ poll.second_option_result }}</strong></li>
+                <li class="list-group-item">{{ poll.third_option }} &mdash; <strong>{{ poll.third_option_result }}</strong></li>
             </ul>
 
-            <div class="panel-footer">
-                Total &mdash; <strong>{{ poll.total }}</strong>
+            <div class="panel-footer1">
+                Total Votes &mdash; <strong>{{ poll.total }}</strong>
+                
+            </div>
+
+            <div class="panel-footer2">
+                <h4><b>In Percentage:</b></h4>
+                <li class="list-group-item">First option choosen by youth &mdash; <strong>{{ poll.first_option_count_youth|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Second option choosen by youth &mdash; <strong>{{ poll.second_option_count_youth|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Third option choosen by youth &mdash; <strong>{{ poll.third_option_count_youth|div:poll.total|mul:100  }}</strong></li>
+                
+                <li class="list-group-item">First option choosen by young people &mdash; <strong>{{ poll.first_option_count_youngpeople|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Second option choosen by young people &mdash; <strong>{{ poll.second_option_count_youngpeople|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Third option choosen by young people &mdash; <strong>{{ poll.third_option_count_youngpeople|div:poll.total|mul:100  }}</strong></li>
+
+                <li class="list-group-item">First option choosen by middleage people &mdash; <strong>{{ poll.first_option_count_middleagepeople|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Second option choosen by middleage people &mdash; <strong>{{ poll.second_option_count_middleagepeople|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Third option choosen by middleage people &mdash; <strong>{{ poll.third_option_count_middleagepeople|div:poll.total|mul:100  }}</strong></li>
+
+                <li class="list-group-item">First option choosen by old people &mdash; <strong>{{ poll.first_option_count_oldpeople|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item"> Second option choosen by old people &mdash; <strong>{{ poll.second_option_count_oldpeople|div:poll.total|mul:100  }}</strong></li>
+                <li class="list-group-item">Third option choosen by old people &mdash; <strong>{{ poll.third_option_count_oldpeople|div:poll.total|mul:100  }}</strong></li>
+
+
             </div>
 
         </div>

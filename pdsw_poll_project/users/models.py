@@ -9,7 +9,7 @@ DROPDOWN_GENDERS =[('female', 'Female'),
                     ]
 
 class UserExtendedModel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile_user")
     gender = models.CharField(max_length = 30, choices=DROPDOWN_GENDERS)
     age = models.IntegerField(validators = [MinValueValidator(15), MaxValueValidator(100)])
 
