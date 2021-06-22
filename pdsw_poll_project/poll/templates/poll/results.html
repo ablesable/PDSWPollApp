@@ -11,17 +11,17 @@
             </div>
 
             <div class="panel-body">
-                <h3>Which language is easier to learn?</h3>
+                <h3>{{ poll.question }}</h3>
             </div>
 
             <ul class="list-group">
-                <li class="list-group-item">Python &mdash; <strong>3</strong></li>
-                <li class="list-group-item">JavaScript &mdash; <strong>3</strong></li>
-                <li class="list-group-item">Swift &mdash; <strong>4</strong></li>
+                <li class="list-group-item">{{ poll.first_option }} &mdash; <strong>{{ poll.first_option_count }}</strong></li>
+                <li class="list-group-item">{{ poll.second_option }} &mdash; <strong>{{ poll.second_option_count }}</strong></li>
+                <li class="list-group-item">{{ poll.third_option }} &mdash; <strong>{{ poll.third_option_count }}</strong></li>
             </ul>
 
             <div class="panel-footer">
-                Total &mdash; <strong>10</strong>
+                Total &mdash; <strong>{{ poll.total }}</strong>
             </div>
 
         </div>
